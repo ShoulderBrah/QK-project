@@ -19,7 +19,7 @@ namespace God
 
         public AEntity()
         {
-           this.Name = nameR.RandomName();
+            this.Name = nameR.RandomName();
             this.Energy = 10;
             this.Power = 10;
             this.Size = 10;

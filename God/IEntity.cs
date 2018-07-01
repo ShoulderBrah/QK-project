@@ -6,26 +6,36 @@ using System.Threading.Tasks;
 
 namespace God
 {
-    public interface IEntity
-    {
-      Point2D Point{get;set;}
+		public interface IEntity
+		{
+			// Location of the entity 
+			Point2D Point { get; set; }
 
-      string Name{get;set;}
+			// Name of the entity
+			string Name { get; set; }
 
-      double Energy { get; set; }
+			// Energy points. Used during fighting.
+			double Energy { get; set; }
 
-      double Power { get; set; }
+			// Power points
+			double Power { get; set; }
 
-      double Size { get; set; }
+			// Size of the entity. Growing when eating.
+			double Size { get; set; }
 
-      double Weight { get; set; }
+			// Weight of the entity. Growing when eating.
+			double Weight { get; set; }
 
-      State State { get; set; }
-        
-      void Attack(IEntity entityAttacked);
+			// State of the entity. Changing after an action.
+			State State { get; set; }
+				
+			// Attacking other entities.
+			void Attack(IEntity targetEntity);
 
-      void Move(Point2D a);
+			// Moving to a new location.
+			void Move(Point2D a);
 
-      void DoAction(AEntity entityAttacked);
-    }
+			// Doing specific or random action.
+			void DoAction(AEntity targetEntity);
+		}
 }

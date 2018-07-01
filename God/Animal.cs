@@ -24,19 +24,21 @@ namespace God
         
         }
 
+        // Eating increases animals weight by 1 to 5 points.
         public void Eat()
         {
             this.State = State.Eating;
             this.Weight += RandomG.RandomNumbers(1, 5);
         }
 
+        // Searching for food decreases animals energy by 0 to 20 points.
         public void SearchingForFood()
         {
             this.State = State.SearchingForFood;
             this.Energy -= RandomG.RandomNumbers(0, 20);
-
         }
 
+        // Sleeping increases animals energy by 100 to 120 points.
         public void Sleep()
         {
             this.State = State.Sleeping;
@@ -48,23 +50,19 @@ namespace God
             double nextNum = RandomG.RandomNumbers(-100, 200);
             if (nextNum < -50)
             {
-                this.State = State.Attacking;
+                this.Attack(targetEntity);
             }
-            else if (nextNum >= -50 && nextNum < 0)
+            else if (nextNum >= -50 && nextNum < 50)
             {
-                this.State = State.Sleeping;
-            }
-            else if (nextNum >= 0 && nextNum < 50)
-            {
-                this.State = State.Sleeping;
+                this.Sleeping();
             }
             else if (nextNum >= 50 && nextNum < 100)
             {
-                this.State = State.SearchingForFood;
+                this.SearchingForFood();
             }
             else
             {
-                this.State = State.Moving;
+                this.Move(new Point2D);
             }
         }
 

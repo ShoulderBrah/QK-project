@@ -6,6 +6,7 @@ using System.Threading;
 
 namespace God
 {
+    // This is the game engine responsible for showing the game menu and simulating world actions.
     public class Simulator
     {
         private static God mPlayer;

@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using System.Timers;
 namespace God
 {
+    // A class for generating random numbers and names.
     public static class RandomG
     {
         private static Random roller = new Random();
-        private static Random d = new Random();
 
         public static double RandomNumbers(int minimum,int maximum)
         {
-            int m = d.Next(minimum,maximum);
-            double toHit = roller.NextDouble();
-            return toHit+m;
+            int wholeNumber = roller.Next(minimum,maximum);
+            double decimalPart = roller.NextDouble();
+            return wholeNumber+decimalPart;
         }
 
         public static string RandomName()

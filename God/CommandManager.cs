@@ -19,11 +19,11 @@ namespace God
         {
             // Add planet.
             if (commands.Length == 3 && commands[1] == "planet")
-               {
-                  Planet m = new Planet(commands[2]);
-                  Scene.AllPlanets.Add(m);
-                  Console.WriteLine("You add planet:{0}", Scene.AllPlanets.ElementAt(Scene.AllPlanets.Count - 1).Name);
-               }
+            {
+               Planet m = new Planet(commands[2]);
+               Scene.AllPlanets.Add(m);
+               Console.WriteLine("You add planet:{0}", Scene.AllPlanets.ElementAt(Scene.AllPlanets.Count - 1).Name);
+            }
 
             // Add creature to a planet.
             if(commands.Length == 4)
@@ -43,43 +43,37 @@ namespace God
                Console.WriteLine("You added to planet:{0},{1} {2}", commands[1], commands[3], commands[2]);
             }
         }
-        public static void Read()
+
+        // Empty a planet's citizens.
+        public static void ActionKill(string[] commands) 
         {
-          string command = Console.ReadLine();
-          string [] commands = command.Split(' ');
+          foreach (Planet planet in Scene.AllPlanets)
+             {
+                if (planet.Name == commands[1])
+                {
+                   planet.citizens.Clear();
+                }
+             }
+          Console.WriteLine("You kill creatures of planet:{0}", commands[1]);
+        }
 
-          switch(commands[0])
+        // Delete a planet.
+        public static void ActionDestroy(string[] commands) 
+        {
+          for (int i = 0; i < Scene.AllPlanets.Count; i++)
           {
+            if(Scene.AllPlanets[i].Name==commands[1])
+            {
+              Scene.AllPlanets.RemoveAt(i);
+              Console.WriteLine("You destroyed planet:{0}", commands[1]);
+            }              
+          }
+        }
 
-            case "add":
-                ActionAdd(commands);
-                break;
-
-            case "kill":
-               foreach (Planet planet in Scene.AllPlanets)
-               {
-                  if (planet.Name == commands[1])
-                  {
-                     planet.citizens.Clear();
-                  }
-               }
-               Console.WriteLine("You kill creatures of planet:{0}", commands[1]);
-               break;
-
-           
-            case "destroy":
-               for (int i = 0; i < Scene.AllPlanets.Count; i++)
-               {
-                  if(Scene.AllPlanets[i].Name==commands[1])
-                  {
-                     Scene.AllPlanets.RemoveAt(i);
-                     Console.WriteLine("You destroyed planet:{0}", commands[1]);
-                  }              
-               }                 
-            break;
-
-            case "statistic":
-                if (Scene.AllPlanets.Count != 0)
+        // Delete a planet.
+        public static void ActionShowStatistics(string[] commands) 
+        {
+          if (Scene.AllPlanets.Count != 0)
                 {
                     Console.WriteLine(Scene.AllPlanets.Count());
                     foreach (var planet in Scene.AllPlanets)
@@ -95,7 +89,32 @@ namespace God
                 {
                     Console.WriteLine("there are no planets created");
                 }
-                break;
+        }
+
+        // Read and parse the user input.
+        public static void Read()
+        {
+          string command = Console.ReadLine();
+          string [] commands = command.Split(' ');
+
+          switch(commands[0])
+          {
+
+            case "add":
+              ActionAdd(commands);
+              break;
+
+            case "kill":
+              ActionKill(commands);
+              break;
+       
+            case "destroy":
+              ActionDestroy(commands);                 
+              break;
+
+            case "statistic":
+              ActionShowStatistics(commands);
+              break;
 
             case " ":
                 break;

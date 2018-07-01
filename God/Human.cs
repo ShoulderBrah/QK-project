@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace God
 {
+    // Unlike Animal the Humans special action is analyzing.
     public class Human:Animal
     {
          public Human():base()
@@ -29,35 +30,28 @@ namespace God
             this.State = State.Analyzing;
         }
         
-        public override void DoAction(AEntity entityAttacked)
+        public override void DoAction(AEntity targetEntity)
         {
-            RandomG num = new RandomG();
-            double nextNum = num.RandomNumbers(-100, 200);
+            double nextNum = RandomG.RandomNumbers(-100, 200);
             if (nextNum < -50)
             {
-                this.State = State.Attacking;
+                this.Attack(targetEntity);
             }
-            else if (nextNum >= -50 && nextNum < 0)
+            else if (nextNum >= -50 && nextNum < 50)
             {
-                this.State = State.Sleeping;
-            }
-            else if (nextNum >= 0 && nextNum < 50)
-            {
-                this.State = State.Sleeping;
+                this.Sleeping();
             }
             else if (nextNum >= 50 && nextNum < 100)
             {
-
-                this.State = State.SearchingForFood;
+                this.SearchingForFood();
             }
             else if (nextNum >= 100 && nextNum < 150)
             {
-                this.State = State.Moving;
-
+                this.Move(new Point2D);
             }
             else
             {
-                this.State = State.Analyzing;
+                this.Analyze();
             }
 
         }

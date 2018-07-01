@@ -15,8 +15,7 @@ namespace God
         {
             this.MPlayer = new God("User", 2000, 2000, 0, 0, new Point2D(1, 1), State.Analyzing);
             Planet a = new Planet("Earth");
-            Scene.AllPlanets.Add(a);
-           
+            Scene.AllPlanets.Add(a);       
         }
        
         public God MPlayer
@@ -31,8 +30,7 @@ namespace God
                 {
                     throw new ArgumentOutOfRangeException("You should initialize God");
                 }
-                mPlayer = value;
-            
+                mPlayer = value;       
             }
         }
 
@@ -41,8 +39,7 @@ namespace God
             Thread thread = new Thread(Update);
             thread.Start();
             this.Menu();
-            Update();
-            
+            Update();          
         }
 
         public void Menu()
@@ -55,35 +52,30 @@ namespace God
             Console.WriteLine("For receiving a statistic: statistic");
 
             while (true)
-            {
-               
+            {          
                 CommandManager.Read();
-
-            }
-        
+            }       
         }
 
+        // Moving every entity to a new random location and then doing a random action.
         public static void Update()
         {
             while (true)
             {
-               RandomG a = new RandomG();
                for (int i = 0; i < Scene.AllPlanets.Count(); i++)
-                {
-                    
+                {                    
                     for (int k = 0; k < Scene.AllPlanets[i].citizens.Count(); k++)
                     {
                         if (Scene.AllPlanets[i].citizens[k]!=null)
                         {
-                            Point2D point = new Point2D(a.RandomNumbers(-100, 100), a.RandomNumbers(-100, 100));
+                            Point2D point = new Point2D(RandomG.RandomNumbers(-100, 100), RandomG.RandomNumbers(-100, 100));
                             Scene.AllPlanets[i].citizens[k].Move(point);
                             Console.WriteLine("Creature {0} is with coordinates {1}", Scene.AllPlanets[i].citizens[k], point);
                         }
                        
                     }
                 }
-
-               CheckDirectoty();
+               simulateActions();
                Thread.Sleep(8000);
             }
         }
@@ -94,46 +86,43 @@ namespace God
             distance = Math.Sqrt(distance);
             return distance;
         }
-        public static void CheckDirectoty()
+        public static void simulateActions()
         {
             
-                for (int i = 0; i < Scene.AllPlanets.Count(); i++)
+            for (int i = 0; i < Scene.AllPlanets.Count(); i++)
+            {
+                for (int m = 0; m < Scene.AllPlanets[i].citizens.Count() - 1; m++)
                 {
-                    for (int k = 0; k < Scene.AllPlanets[i].citizens.Count()-1; k++)
+
+                    if (Scene.AllPlanets[i].citizens[m] != null && Scene.AllPlanets[i].citizens[m+1]!=null)
                     {
-                        for (int m = 1; m < Scene.AllPlanets[i].citizens.Count()-1; m++)
+
+                        if (Distance(Scene.AllPlanets[i].citizens[m].Point, Scene.AllPlanets[i].citizens[m+1].Point) <= 500)
                         {
-                            if (Scene.AllPlanets[i].citizens[m] != null && Scene.AllPlanets[i].citizens[m+1]!=null)
+
+                            if (number.RandomNumbers(-100, 100) < 0)
                             {
-                                if (Distance(Scene.AllPlanets[i].citizens[m].Point, Scene.AllPlanets[i].citizens[m+1].Point) <= 500)
+                                Console.WriteLine("{0} attacked {1}", Scene.AllPlanets[i].citizens[m], Scene.AllPlanets[i].citizens[m+1]);
+                                Scene.AllPlanets[i].citizens[m].Attack(Scene.AllPlanets[i].citizens[m+1]);
+                            }
+                            else
+                            {
+                                if (Scene.AllPlanets[i].citizens[m].GetType() == Scene.AllPlanets[i].citizens[m+1].GetType())
                                 {
-                                    if (number.RandomNumbers(-100, 100) < 0)
-                                    {
-                                        
-                                        Console.WriteLine("{0} attacked {1}", Scene.AllPlanets[i].citizens[m], Scene.AllPlanets[i].citizens[m+1]);
-                                        Scene.AllPlanets[i].citizens[m].Attack(Scene.AllPlanets[i].citizens[m+1]);
-                                    }
-                                    else
-                                    {
-
-
-                                        if (Scene.AllPlanets[i].citizens[m].GetType() == Scene.AllPlanets[i].citizens[m+1].GetType())
-                                        {
-                                            Entity q = new Entity(number.RandomName());
-                                            mPlayer.AddCitizen(Scene.AllPlanets[i], q);
-                                            Console.WriteLine("{0} and {1} have baby-{2}", Scene.AllPlanets[i].citizens[m], Scene.AllPlanets[i].citizens[m + 1], q.Name);
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine("{0} and {1} tried to have baby but are diferent types", Scene.AllPlanets[i].citizens[m], Scene.AllPlanets[i].citizens[m + 1]);
-                                        }
-                                    }
-                                    Thread.Sleep(5000);
+                                    Entity q = new Entity(number.RandomName());
+                                    mPlayer.AddCitizen(Scene.AllPlanets[i], q);
+                                    Console.WriteLine("{0} and {1} have baby-{2}", Scene.AllPlanets[i].citizens[m], Scene.AllPlanets[i].citizens[m + 1], q.Name);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("{0} and {1} tried to have baby but are diferent types", Scene.AllPlanets[i].citizens[m], Scene.AllPlanets[i].citizens[m + 1]);
                                 }
                             }
-                       }
-                 } 
-              }
-         }
+                            Thread.Sleep(5000);
+                        }
+                    }
+                }              
+            }
+        }
     }
 }

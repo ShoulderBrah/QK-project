@@ -10,11 +10,10 @@ namespace God
     {
         private double x;
         private double y;
-        private RandomG num = new RandomG();
         public Point2D()
         {
-            this.X = num.RandomNumbers(-100, 100);
-            this.Y = num.RandomNumbers(-100, 100);
+            this.X = RandomG.RandomNumbers(-100, 100);
+            this.Y = RandomG.RandomNumbers(-100, 100);
         }
 
         public Point2D(double x,double y)

@@ -26,7 +26,7 @@ namespace God
                }
 
             // Add creature to a planet.
-            if(commands.Length==4)
+            if(commands.Length == 4)
             {
                for (int i = 0; i < Scene.AllPlanets.Count(); i++)
                {    

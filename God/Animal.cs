@@ -26,30 +26,26 @@ namespace God
 
         public void Eat()
         {
-            RandomG food = new RandomG();
             this.State = State.Eating;
-            this.Weight += food.RandomNumbers(1, 5);
+            this.Weight += RandomG.RandomNumbers(1, 5);
         }
 
         public void SearchingForFood()
         {
             this.State = State.SearchingForFood;
-            RandomG food = new RandomG();
-            this.Energy -= food.RandomNumbers(0, 20);
+            this.Energy -= RandomG.RandomNumbers(0, 20);
 
         }
 
         public void Sleep()
         {
             this.State = State.Sleeping;
-            RandomG food = new RandomG();
-            this.Energy += food.RandomNumbers(100, 120);
+            this.Energy += RandomG.RandomNumbers(100, 120);
         }
 
-        public override void DoAction(AEntity entityAttacked)
+        public override void DoAction(AEntity targetEntity)
         {
-            RandomG num = new RandomG();
-            double nextNum = num.RandomNumbers(-100, 200);
+            double nextNum = RandomG.RandomNumbers(-100, 200);
             if (nextNum < -50)
             {
                 this.State = State.Attacking;
@@ -64,14 +60,12 @@ namespace God
             }
             else if (nextNum >= 50 && nextNum < 100)
             {
-
                 this.State = State.SearchingForFood;
             }
             else
             {
                 this.State = State.Moving;
             }
-
         }
 
         public override string ToString()

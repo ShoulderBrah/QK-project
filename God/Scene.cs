@@ -11,13 +11,11 @@ namespace God
         public static List<Planet> AllPlanets=new List<Planet>();
         private static RandomG name=new RandomG(); 
 
-        public static void CreateEntity(EntityType creature,Planet planet)
+        public static void CreateEntity(EntityType creature, Planet planet)
         {
           switch(creature)
-          {
-                
-              case EntityType.animal:
-                  
+          {              
+              case EntityType.animal:                 
                   Animal p = new Animal(name.RandomName());
                   planet.AddCitizen(p);
                   break;
@@ -41,13 +39,11 @@ namespace God
                   Entity d = new Entity(name.RandomName());
                   planet.AddCitizen(d);
                   break;
-              default:
-                  throw new ArgumentOutOfRangeException("there is no that kond of creature");
-                  break;
 
-          
-          }
-        
+              default:
+                  throw new ArgumentOutOfRangeException("there is no such type of creature");
+                  break;          
+          }        
         }
     }
 }

@@ -23,8 +23,7 @@ namespace God
             foreach (var cit in cits)
             {
                 citizens.Add(cit);
-            }
-            
+            }           
         }
 
         public string Name

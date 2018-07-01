@@ -13,7 +13,7 @@ namespace God
         private RandomG num = new RandomG();
         public Point2D()
         {
-            this.X = num.RandomNumbers(-100,100);
+            this.X = num.RandomNumbers(-100, 100);
             this.Y = num.RandomNumbers(-100, 100);
         }
 
@@ -29,7 +29,7 @@ namespace God
                 return this.x;
             }
              set
-             {
+            {
                 this.x = value;
             }
         }
@@ -46,10 +46,9 @@ namespace God
             }
         }
 
-
         public override string ToString()
         {
-            return "("+Math.Round(this.X,2)+","+ Math.Round(this.Y,2)+")";
+            return "("+Math.Round(this.X, 2)+","+ Math.Round(this.Y, 2)+")";
         }
     }
 }

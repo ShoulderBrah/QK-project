@@ -29,7 +29,7 @@ namespace God
             {
                 if(value==null)
                 {
-                    throw new ArgumentOutOfRangeException("You should inirialize God");
+                    throw new ArgumentOutOfRangeException("You should initialize God");
                 }
                 mPlayer = value;
             

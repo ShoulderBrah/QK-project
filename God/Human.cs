@@ -28,6 +28,7 @@ namespace God
         {
             this.State = State.Analyzing;
         }
+        
         public override void DoAction(AEntity entityAttacked)
         {
             RandomG num = new RandomG();

@@ -8,14 +8,11 @@ using System.Runtime.ExceptionServices;
 namespace God
 {
     class Program
-    {
-        
+    {        
         static void Main(string[] args)
         {
-            Simulator m = new Simulator();
-            
-
-            m.Run();
+            Simulator simulator = new Simulator();
+            simualtor.Run();
         }
     }
 }

@@ -8,24 +8,24 @@ namespace God
 {
     public interface IEntity
     {
-        Point2D Point{get;set;}
+      Point2D Point{get;set;}
 
-       string Name{get;set;}
+      string Name{get;set;}
 
-       double Energy { get; set; }
+      double Energy { get; set; }
 
-       double Power { get; set; }
+      double Power { get; set; }
 
-       double Size { get; set; }
+      double Size { get; set; }
 
-       double Weight { get; set; }
+      double Weight { get; set; }
 
-       State State { get; set; }
+      State State { get; set; }
         
-        void Attack(IEntity entityAttacked);
+      void Attack(IEntity entityAttacked);
 
-        void Move(Point2D a);
+      void Move(Point2D a);
 
-        void DoAction(AEntity entityAttacked);
+      void DoAction(AEntity entityAttacked);
     }
 }

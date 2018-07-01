@@ -13,7 +13,7 @@ namespace God
         
         }
 
-        public Animal(string name,double energy,double power,double size,double weight, Point2D a,State b)
+        public Animal(string name, double energy, double power, double size, double weight, Point2D a, State b)
             :base(name, energy, power, size, weight,  a, b)
         {
             
@@ -26,16 +26,16 @@ namespace God
 
         public void Eat()
         {
-            RandomG food=new RandomG();
+            RandomG food = new RandomG();
             this.State = State.Eating;
-            this.Weight += food.RandomNumbers(1,5);
+            this.Weight += food.RandomNumbers(1, 5);
         }
 
         public void SearchingForFood()
         {
             this.State = State.SearchingForFood;
             RandomG food = new RandomG();
-            this.Energy -= food.RandomNumbers(0,20);
+            this.Energy -= food.RandomNumbers(0, 20);
 
         }
 
@@ -43,13 +43,13 @@ namespace God
         {
             this.State = State.Sleeping;
             RandomG food = new RandomG();
-            this.Energy += food.RandomNumbers(100,120);
+            this.Energy += food.RandomNumbers(100, 120);
         }
 
         public override void DoAction(AEntity entityAttacked)
         {
-            RandomG num=new RandomG();
-            double nextNum=num.RandomNumbers(-100,200);
+            RandomG num = new RandomG();
+            double nextNum = num.RandomNumbers(-100, 200);
             if (nextNum < -50)
             {
                 this.State = State.Attacking;
@@ -70,7 +70,6 @@ namespace God
             else
             {
                 this.State = State.Moving;
-
             }
 
         }

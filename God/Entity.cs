@@ -12,6 +12,7 @@ namespace God
         { 
         
         }
+
         public Entity(string name):base(name)
         {
         
@@ -21,8 +22,6 @@ namespace God
             :base(name, energy, power, size, weight,  a, b)
         {
             
-        }
-        
-        
+        }       
     }
 }

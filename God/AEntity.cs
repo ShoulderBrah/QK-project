@@ -27,6 +27,7 @@ namespace God
             this.Point = new Point2D();
             this.State = State.Unknown;
         }
+
         public AEntity(string name)
         {
             this.Name = name;
@@ -37,6 +38,7 @@ namespace God
             this.Point = new Point2D();
             this.State = State.Unknown;
         }
+
         public AEntity(string name,double energy,double power,double size,double weight, Point2D a,State b)
         {
             this.Name = name;
@@ -47,9 +49,13 @@ namespace God
             this.Point = a;
             this.State = b;
         }
+
         public string Name 
         {
-            get { return this.name; }
+            get
+            { 
+                return this.name; 
+            }
             set 
             {
                 if(value==null)
@@ -62,7 +68,10 @@ namespace God
 
         public double Energy
         {
-            get { return this.energy; }
+            get 
+            {
+                return this.energy;
+            }
             set 
             {
                 if (value<0)
@@ -75,7 +84,10 @@ namespace God
 
         public double Power
         {
-            get { return this.power; }
+            get 
+            { 
+                return this.power; 
+            }
             set 
             {
                 if (value < 0)
@@ -88,7 +100,10 @@ namespace God
 
         public double Size
         {
-            get { return this.size; }
+            get 
+            { 
+                return this.size; 
+            }
             set
             {
                 if (value < 0)
@@ -101,7 +116,10 @@ namespace God
 
         public double Weight
         {
-            get { return this.weight; }
+            get 
+            { 
+                return this.weight; 
+            }
             set
             {
                 if (value < 0)
@@ -181,6 +199,5 @@ namespace God
         {
             return "Entity: "+"Name "+this.Name;
         }
-
     }
 }

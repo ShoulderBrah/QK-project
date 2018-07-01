@@ -14,8 +14,14 @@ namespace God
         private double power;
         private double size;
         private double weight;
-        private Point2D point;
+        private Point2D location;
         private State state;
+
+        private void killEntity(IEntity targetEntity)
+        {
+            Console.WriteLine("{0} is killed", targetEntity.Name);
+            Scene.removeEntity(targetEntity);
+        }
 
         public AEntity()
         {
@@ -24,7 +30,7 @@ namespace God
             this.Power = 10;
             this.Size = 10;
             this.Weight = 10;
-            this.Point = new Point2D();
+            this.Location = new Point2D();
             this.State = State.Unknown;
         }
 
@@ -35,18 +41,19 @@ namespace God
             this.Power = 10;
             this.Size = 10;
             this.Weight = 10;
-            this.Point = new Point2D();
+            this.Location = new Point2D();
             this.State = State.Unknown;
         }
 
-        public AEntity(string name,double energy,double power,double size,double weight, Point2D a,State b)
+        public AEntity(string name, double energy, double power, double size, double weight,
+         Point2D location, State b)
         {
             this.Name = name;
             this.Energy = energy;
             this.Power = power;
             this.Size = size;
             this.Weight = weight;
-            this.Point = a;
+            this.Location = location;
             this.State = b;
         }
 
@@ -130,15 +137,15 @@ namespace God
             }
         }
 
-        public Point2D Point
+        public Point2D Location
         {
             get
             {
-                return this.point;
+                return this.location;
             }
             set
             {
-                 this.point = value;
+                 this.location = value;
             }
         
         }
@@ -156,43 +163,31 @@ namespace God
 
         }
 
-        public virtual void Attack(IEntity entityAttacked)
+        // Attack an entity and calculate the result of the battle.
+        public virtual void Attack(IEntity targetEntity)
         {
             RandomG rand = new RandomG();
-            double r = rand.RandomNumbers(10, 20);
-            if ((entityAttacked.Energy - r) >= 0)
+            double damage = rand.RandomNumbers(10, 20);
+            if ((targetEntity.Energy - damage) >= 0)
             {
-                entityAttacked.Energy -= r;
+                targetEntity.Energy -= damage;
                 this.State = State.Attacking;
             }
             else
             {
-                Console.WriteLine("{0} is killed", entityAttacked.Name);
-                for (int i = 0; i < Scene.AllPlanets.Count(); i++)
-                {
-                    for (int k = 0; k < Scene.AllPlanets[i].citizens.Count(); k++)
-                    {
-                        if (Scene.AllPlanets[i].citizens[k]==entityAttacked)
-                        {
-                            Scene.AllPlanets[i].citizens[k] = null;
-
-                        }
-                        
-                    }
-                    
-                }
+                killEntity(targetEntity)
             }
         }
 
-        public virtual void Move(Point2D a)
+        public virtual void Move(Point2D newLocation)
         {
-            this.Point = a;
+            this.Point = newLocation;
             this.State = State.Moving;
         }
 
-        public virtual void DoAction(AEntity entityAttacked)
+        public virtual void DoAction(AEntity targetEntity)
         {
-            this.Attack(entityAttacked);
+            this.Attack(targetEntity);
         }
         
         public override string ToString()

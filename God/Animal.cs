@@ -54,7 +54,7 @@ namespace God
             }
             else if (nextNum >= -50 && nextNum < 50)
             {
-                this.Sleeping();
+                this.Sleep();
             }
             else if (nextNum >= 50 && nextNum < 100)
             {
@@ -62,7 +62,7 @@ namespace God
             }
             else
             {
-                this.Move(new Point2D);
+                this.Move(new Point2D());
             }
         }
 

@@ -1,0 +1,2 @@
+C:\workspace\QK-project\GodTests\obj\Debug\GodTests.csprojResolveAssemblyReference.cache
+C:\workspace\QK-project\GodTests\obj\Debug\GodTests.csproj.CoreCompileInputs.cache

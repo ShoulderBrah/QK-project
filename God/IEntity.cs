@@ -9,7 +9,7 @@ namespace God
 		public interface IEntity
 		{
 			// Location of the entity 
-			Point2D Point { get; set; }
+			Point2D Location { get; set; }
 
 			// Name of the entity
 			string Name { get; set; }

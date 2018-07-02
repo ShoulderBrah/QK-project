@@ -9,18 +9,17 @@ namespace God
    public static class Scene
    {
      public static List<Planet> AllPlanets=new List<Planet>();
-     private static RandomG name=new RandomG();
 
      // Iterate trough the citizens of the planets to delete the entity.
-     public static removeEntity(entity) 
+     public static void removeEntity(IEntity entity) 
      {
-         for (int i = 0; i < this.AllPlanets.Count(); i++)
+         for (int i = 0; i < AllPlanets.Count(); i++)
          {    
-            for (int k = 0; k < this.AllPlanets[i].citizens.Count(); k++)
+            for (int k = 0; k < AllPlanets[i].citizens.Count(); k++)
             {
-               if (this.AllPlanets[i].citizens[k]==targetEntity)
+               if (AllPlanets[i].citizens[k]== entity)
                {
-                  this.AllPlanets[i].citizens[k] = null;
+                  AllPlanets[i].citizens[k] = null;
                }                      
             }                   
          }
@@ -32,27 +31,27 @@ namespace God
          switch(creature)
          {              
             case EntityType.animal:                 
-               Animal a = new Animal(name.RandomName());
+               Animal a = new Animal(RandomG.RandomName());
                planet.AddCitizen(a);
                break;
 
             case EntityType.entity:
-               Entity e = new Entity(name.RandomName());
+               Entity e = new Entity(RandomG.RandomName());
                planet.AddCitizen(e);
                break;
 
             case EntityType.god:
-               God g = new God(name.RandomName());
+               God g = new God(RandomG.RandomName());
                planet.AddCitizen(g);
                break;
 
             case EntityType.human:
-               Human h = new Human(name.RandomName());
+               Human h = new Human(RandomG.RandomName());
                planet.AddCitizen(h);
                break;
 
             case EntityType.unknown:
-               Entity u = new Entity(name.RandomName());
+               Entity u = new Entity(RandomG.RandomName());
                planet.AddCitizen(u);
                break;
 

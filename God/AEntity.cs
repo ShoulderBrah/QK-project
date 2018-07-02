@@ -8,7 +8,6 @@ namespace God
 {
     public abstract class AEntity:IEntity
     {
-        private static RandomG nameR = new RandomG();
         private string name;
         private double energy;
         private double power;
@@ -25,7 +24,7 @@ namespace God
 
         public AEntity()
         {
-            this.Name = nameR.RandomName();
+            this.Name = RandomG.RandomName();
             this.Energy = 10;
             this.Power = 10;
             this.Size = 10;

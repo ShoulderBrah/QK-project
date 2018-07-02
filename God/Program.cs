@@ -12,7 +12,7 @@ namespace God
         static void Main(string[] args)
         {
             Simulator simulator = new Simulator();
-            simualtor.Run();
+            simulator.Run();
         }
     }
 }

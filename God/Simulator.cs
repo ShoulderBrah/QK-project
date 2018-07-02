@@ -9,8 +9,8 @@ namespace God
     // This is the game engine responsible for showing the game menu and simulating world actions.
     public class Simulator
     {
+        private static readonly int inRangeOfAttackDistance = 500;
         private static God mPlayer;
-        private static RandomG number = new RandomG();
 
         public Simulator()
         {
@@ -98,10 +98,10 @@ namespace God
                     if (Scene.AllPlanets[i].citizens[m] != null && Scene.AllPlanets[i].citizens[m+1]!=null)
                     {
 
-                        if (Distance(Scene.AllPlanets[i].citizens[m].Point, Scene.AllPlanets[i].citizens[m+1].Point) <= 500)
+                        if (Distance(Scene.AllPlanets[i].citizens[m].Location, Scene.AllPlanets[i].citizens[m+1].Location) <= inRangeOfAttackDistance)
                         {
 
-                            if (number.RandomNumbers(-100, 100) < 0)
+                            if (RandomG.RandomNumbers(-100, 100) < 0)
                             {
                                 Console.WriteLine("{0} attacked {1}", Scene.AllPlanets[i].citizens[m], Scene.AllPlanets[i].citizens[m+1]);
                                 Scene.AllPlanets[i].citizens[m].Attack(Scene.AllPlanets[i].citizens[m+1]);
@@ -110,7 +110,7 @@ namespace God
                             {
                                 if (Scene.AllPlanets[i].citizens[m].GetType() == Scene.AllPlanets[i].citizens[m+1].GetType())
                                 {
-                                    Entity q = new Entity(number.RandomName());
+                                    Entity q = new Entity(RandomG.RandomName());
                                     mPlayer.AddCitizen(Scene.AllPlanets[i], q);
                                     Console.WriteLine("{0} and {1} have baby-{2}", Scene.AllPlanets[i].citizens[m], Scene.AllPlanets[i].citizens[m + 1], q.Name);
                                 }
